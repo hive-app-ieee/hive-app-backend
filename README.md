@@ -11,6 +11,7 @@ The folder structure has been divided into two main sections:
 
 ### API Folder Breakdown
 
+```plaintext
 API
 ├── src
 │   ├── Actions
@@ -38,8 +39,7 @@ API
 │   │   │   ├── actions.routes.php
 │   │   │   └── api_router.php
 │   └── Support
-
-#### API
+```
 
 This folder contains all logic related to the API that will be consumed by the Android application. It includes:
 
@@ -65,6 +65,7 @@ This folder contains all logic related to the API that will be consumed by the A
 
 ### App Folder Breakdown
 
+```plaintext
 app
 ├── Domain
 │   ├── Booking
@@ -87,8 +88,7 @@ app
 │           └── Workspace.php
 ├── Http
 │   └── Controllers
-
-#### App
+```
 
 This folder contains the core business logic of the application. It includes the domain models, controllers, and services specific to the business logic.
 
