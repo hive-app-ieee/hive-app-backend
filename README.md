@@ -1,4 +1,4 @@
-# Hive API Documentation
+# Hive App Backend Documentation
 
 This repository contains the backend API for the Hive Android application. It is structured using a domain-oriented design pattern to maintain clean code separation and scalability. The project uses Laravel for the backend API with separate modules for each domain, including features like booking, workspace management, and user authentication.
 
