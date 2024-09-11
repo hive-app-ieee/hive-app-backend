@@ -1,66 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Hive API Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository contains the backend API for the Hive Android application. It is structured using a domain-oriented design pattern to maintain clean code separation and scalability. The project uses Laravel for the backend API with separate modules for each domain, including features like booking, workspace management, and user authentication.
 
-## About Laravel
+## Project Structure
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The folder structure has been divided into two main sections:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **API**: This is the core API folder which contains all the necessary files for the API, including controllers, routes, services, and other supporting files.
+- **app**: This folder contains the domain models and other classes related to the internal business logic.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### API Folder Breakdown
 
-## Learning Laravel
+API
+├── src
+│   ├── Actions
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── Data
+│   │   │   └── Domain
+│   │   │       ├── Auth
+│   │   │       │   └── AuthController.php
+│   │   │       ├── Booking
+│   │   │       │   └── BookingController.php
+│   │   │       ├── Recommendation
+│   │   │       │   └── RecommendationController.php
+│   │   │       └── Workspace
+│   │   │           └── WorkspaceController.php
+│   │   ├── Services
+│   │   │   └── APIController.php
+│   ├── Middlewares
+│   ├── Requests
+│   ├── routes
+│   │   ├── domains
+│   │   │   ├── auth.routes.php
+│   │   │   ├── booking.routes.php
+│   │   │   ├── workspace.routes.php
+│   │   │   ├── actions.routes.php
+│   │   │   └── api_router.php
+│   └── Support
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### API
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+This folder contains all logic related to the API that will be consumed by the Android application. It includes:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Actions**: Stores logic related to API actions, like specific services or handlers.
+- **Http**:
+  - **Controllers**:
+    - **Data**: Handles the controllers for manipulating domain-specific data.
+    - **Domain**: Contains controllers for each domain in the app:
+      - `AuthController`: Handles user authentication.
+      - `BookingController`: Handles booking processes.
+      - `RecommendationController`: Manages recommendation logic.
+      - `WorkspaceController`: Manages workspace-related operations.
+  - **Services**: Houses reusable services like `APIController`, which might handle common functionalities across the API.
+  - **Middlewares**: Custom middlewares for the API.
+  - **Requests**: Handles form request validation for the API.
+- **routes/domains**: Contains routes for each domain:
+  - `auth.routes.php`: Routes for authentication.
+  - `booking.routes.php`: Routes for booking.
+  - `workspace.routes.php`: Routes for workspace management.
+  - `actions.routes.php`: General actions routes.
+  - `api_router.php`: Main routing file to handle all domain-specific routing.
+- **Support**: Contains utility or helper functions.
 
-## Laravel Sponsors
+### App Folder Breakdown
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+app
+├── Domain
+│   ├── Booking
+│   │   └── Models
+│   │       ├── Booking.php
+│   │       └── BookingAttendance.php
+│   ├── Management
+│   │   └── Models
+│   │       ├── City.php
+│   │       ├── Governorate.php
+│   │       ├── Location.php
+│   │       └── User.php
+│   ├── Recommendation
+│   │   └── Models
+│   │       ├── Preference.php
+│   │       └── Review.php
+│   └── Workspace
+│       └── Models
+│           ├── Room.php
+│           └── Workspace.php
+├── Http
+│   └── Controllers
 
-### Premium Partners
+#### App
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+This folder contains the core business logic of the application. It includes the domain models, controllers, and services specific to the business logic.
 
-## Contributing
+- **Domain**:
+  - **Booking**:
+    - `Booking.php`: The booking model that contains business rules for bookings.
+    - `BookingAttendance.php`: Model for tracking attendance within a booking.
+  - **Management**:
+    - Models for managing cities, governorates, locations, and users.
+    - `City.php`, `Governorate.php`, `Location.php`, `User.php`.
+  - **Recommendation**: Handles recommendation-related logic with `Preference.php` and `Review.php`.
+  - **Workspace**: Manages the workspace data:
+    - `Room.php`: Handles room-specific data.
+    - `Workspace.php`: Main workspace model.
+- **Http**: This folder contains HTTP-related logic for non-API operations in the app.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Key Packages
 
-## Code of Conduct
+- **Laravel Permissions**: To handle user roles and permissions across different modules.
+- **Laravel Medialibrary**: For managing media uploads and attachments within the workspace and booking domains.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Domain-Oriented Design
 
-## Security Vulnerabilities
+This project follows a domain-oriented structure where each domain encapsulates its own models, controllers, and business logic. Each domain is self-contained to ensure that changes in one domain do not affect others, making it easier to manage and scale the project.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## API Documentation
 
-## License
+- **Booking**: All endpoints related to the workspace booking feature.
+- **Workspace**: Manage workspaces and rooms.
+- **Authentication**: Includes login, registration, and authorization logic.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+For more detailed API documentation, refer to the `routes/domains` folder for available endpoints.
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/hive.github
+   ```
+2. Install dependencies:
+    ```bash
+    composer install
+    ```
+3. dump autoload:
+    ```bash
+    composer dump-autoload
+    ```
+4. Setup environment variables:
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+5. Run Migrations:
+    ```bash
+    php artisan migrate
+    ```
+6. Run The application:
+    ```bash
+    php artisan serve
+    ```
