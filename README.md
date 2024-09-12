@@ -128,7 +128,7 @@ For more detailed API documentation, refer to the `routes/domains` folder for av
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/hive.github
+   git clone https://github.com/hive-app-ieee/hive-app-backend.git
    ```
 2. Install dependencies:
     ```bash
